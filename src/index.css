@@ -1,13 +1,71 @@
-body {
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body{
+  background-image: url(https://images.unsplash.com/photo-1584267385494-9fdd9a71ad75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8d2VhdGhlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.container{
+  width: 100%;
+  height: 100vh;
+  padding-top: 50px;
+}
+
+
+
+.weather{
+  width: 380px;
+  padding: 30px;
+  border-radius: 10px;
+  margin: 50px auto;
+  text-align: center;
+  color: #fff;
+}
+
+.glass{
+  background: linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0));
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border:1px solid  rgba(255,255,255,0.18);
+  box-shadow:0 8px 32px 0 rgba(0,0,0,0.37);
+
+}
+
+.search{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search input{
+  border: none;
+  outline: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+}
+
+.info{
+  margin-top: 60px;
+}
+
+.weather_img{
+  width: 80px;
+  height: 80px;
+}
+
+.details{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.error{
+  color: red;
 }
