@@ -1,7 +1,7 @@
 import React from "react"
 
 const Forecast = ({ data }) => {
-    if(data == false) return
+    if(data === false) return
     const {image,celcius,name,humidity,speed} = data
    return (
       <div className="info">

@@ -5,11 +5,15 @@ import rain from "../images/rain.jfif"
 import drizzle from "../images/drizzle.jfif"
 import mist from "../images/mist.png"
 import Forecast from "./Forecast"
+import { BsSearch } from "@react-icons/all-files/bs/BsSearch";
+import Loading from "./Loading"
 
 const Home = () => {
    const [data, setData] = useState(false)
    const [name, setName] = useState("")
+   const [loading,setLoading] = useState(false)
    const [error, setError] = useState("")
+
 
    const Api_Key = `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=5046de5e3f80eb55f64b4afd062dca61&units=metric`
 
@@ -34,6 +38,7 @@ const Home = () => {
    const handleSubmit = (e) => {
       e.preventDefault()
       if (name.trim() !== "") {
+         setLoading(true)
          fetch(Api_Key)
             .then((res) => res.json())
             .then((info) => {
@@ -47,10 +52,13 @@ const Home = () => {
                   image: imagePath,
                })
                setName("")
+                setLoading(false)
                setError("")
             })
             .catch((err) => {
                err ? setError("Invalid city name") : setError("")
+               setName("")
+               setLoading(false)
             })
       }
    }
@@ -65,14 +73,14 @@ const Home = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                />
-               <button className="search_btn">Search</button>
+              <BsSearch />
             </form>
             {error && (
                <div className="error">
                   <p>{error}</p>
                </div>
             )}
-            <Forecast data={data} />
+           {loading ?<Loading /> : <Forecast data={data} />}  
          </div>
       </div>
    )
