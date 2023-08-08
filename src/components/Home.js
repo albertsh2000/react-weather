@@ -74,7 +74,7 @@ const Home = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                />
-               <BsSearch className="search_icon" />
+               <BsSearch className="search_icon" onTouchStart={handleSubmit} />
             </form>
             {error && (
                <div className="error">
