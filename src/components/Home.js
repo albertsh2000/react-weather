@@ -5,24 +5,23 @@ import rain from "../images/rain.jfif"
 import drizzle from "../images/drizzle.jfif"
 import mist from "../images/mist.png"
 import Forecast from "./Forecast"
-import { BsSearch } from "@react-icons/all-files/bs/BsSearch";
+import { BsSearch } from "@react-icons/all-files/bs/BsSearch"
 import Loading from "./Loading"
 
 const Home = () => {
    const [data, setData] = useState(false)
    const [name, setName] = useState("")
-   const [loading,setLoading] = useState(false)
+   const [loading, setLoading] = useState(false)
    const [error, setError] = useState("")
 
-
-   const Api_Key = `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=5046de5e3f80eb55f64b4afd062dca61&units=metric`
+   const Api_Key = `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=e2d3c7fff9be5d86ffcff92798a2e25a&units=metric`
 
    let imagePath = ""
 
    const showImg = (info) => {
       if (info.weather[0].main === "Clouds") {
          imagePath = clouds
-      } else if (info.weather[0].main === "Clouds") {
+      } else if (info.weather[0].main === "Clear") {
          imagePath = clear
       } else if (info.weather[0].main === "Rain") {
          imagePath = rain
@@ -42,17 +41,19 @@ const Home = () => {
          fetch(Api_Key)
             .then((res) => res.json())
             .then((info) => {
+               console.log(info)
                showImg(info)
                setData({
                   ...data,
                   celcius: info.main.temp,
                   name: info.name,
+                  country: info.sys.country,
                   humidity: info.main.humidity,
                   speed: info.wind.speed,
                   image: imagePath,
                })
                setName("")
-                setLoading(false)
+               setLoading(false)
                setError("")
             })
             .catch((err) => {
@@ -66,21 +67,21 @@ const Home = () => {
    return (
       <div className="container">
          <div className="weather glass">
-            <form className="search" onSubmit={handleSubmit}>
+            <form className="search_wrapper" onSubmit={handleSubmit}>
                <input
                   type="text"
-                  placeholder="enter city name"
+                  placeholder="Enter city name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                />
-              <BsSearch />
+               <BsSearch className="search_icon" />
             </form>
             {error && (
                <div className="error">
                   <p>{error}</p>
                </div>
             )}
-           {loading ?<Loading /> : <Forecast data={data} />}  
+            {loading ? <Loading /> : <Forecast data={data} />}
          </div>
       </div>
    )
