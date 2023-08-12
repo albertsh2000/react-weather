@@ -4,11 +4,10 @@ import clear from "../images/clear.png"
 import rain from "../images/rain.jfif"
 import drizzle from "../images/drizzle.jfif"
 import mist from "../images/mist.png"
-// import Forecast from "./Forecast"
 import { BsSearch } from "@react-icons/all-files/bs/BsSearch"
 import Loading from "./Loading"
-
 const Forecast = lazy(() => import("./Forecast"));
+
 
 const Home = () => {
    const [data, setData] = useState(false)
@@ -76,7 +75,7 @@ const Home = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                />
-               <BsSearch className="search_icon" onTouchStart={handleSubmit} />
+               <BsSearch className="search_icon" onClick={handleSubmit} />
             </form>
             {error && (
                <div className="error">
