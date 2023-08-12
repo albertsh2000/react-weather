@@ -1,12 +1,14 @@
-import React, { useState } from "react"
+import { useState,lazy, Suspense } from "react";
 import clouds from "../images/clouds.png"
 import clear from "../images/clear.png"
 import rain from "../images/rain.jfif"
 import drizzle from "../images/drizzle.jfif"
 import mist from "../images/mist.png"
-import Forecast from "./Forecast"
+// import Forecast from "./Forecast"
 import { BsSearch } from "@react-icons/all-files/bs/BsSearch"
 import Loading from "./Loading"
+
+const Forecast = lazy(() => import("./Forecast"));
 
 const Home = () => {
    const [data, setData] = useState(false)
@@ -81,7 +83,11 @@ const Home = () => {
                   <p>{error}</p>
                </div>
             )}
-            {loading ? <Loading /> : <Forecast data={data} />}
+            <Suspense fallback={<Loading />}>
+            {
+               loading ? <Loading /> : <Forecast data={data} />
+            }
+            </Suspense>
          </div>
       </div>
    )
